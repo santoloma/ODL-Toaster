@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3656ec3-7613-4cbc-97ec-f25df02c4ac6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/src/main/yang/toaster.yang" afterPath="$PROJECT_DIR$/api/src/main/yang/toaster.yang" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/OpendaylightToaster.java" afterPath="$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/OpendaylightToaster.java" />
     </list>
     <ignored path="$PROJECT_DIR$/api/target/" />
@@ -25,24 +24,43 @@
       <file leaf-file-name="OpendaylightToaster.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/OpendaylightToaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1060">
-              <caret line="277" column="0" lean-forward="true" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
+            <state relative-caret-position="912">
+              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding>
-                <element signature="e#0#12656#0" expanded="true" />
+                <element signature="e#0#13461#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#2705#2706#0" expanded="true" />
-                <element signature="e#2761#2762#0" expanded="true" />
-                <element signature="e#6981#6987#0" expanded="true" />
-                <element signature="e#10410#10416#0" expanded="true" />
-                <element signature="e#10805#10811#0" expanded="true" />
-                <element signature="e#11088#11094#0" expanded="true" />
-                <element signature="e#12541#12547#0" expanded="true" />
+                <element signature="e#6183#6184#0" expanded="true" />
+                <element signature="e#6222#6223#0" expanded="true" />
+                <element signature="e#7742#7748#0" expanded="true" />
+                <element signature="e#11171#11177#0" expanded="true" />
+                <element signature="e#11566#11572#0" expanded="true" />
+                <element signature="e#11849#11855#0" expanded="true" />
+                <element signature="e#13346#13352#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ToasterProviderRuntimeMXBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/ToasterProviderRuntimeMXBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#447#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -60,6 +78,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/ToasterProviderRuntimeMXBean.java" />
         <option value="$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/OpendaylightToaster.java" />
       </list>
     </option>
@@ -288,20 +307,30 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/ToasterProviderRuntimeMXBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#447#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/impl/src/main/java/org/opendaylight/toaster/impl/OpendaylightToaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1060">
-          <caret line="277" column="0" lean-forward="true" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
+        <state relative-caret-position="912">
+          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
-            <element signature="e#0#12656#0" expanded="true" />
+            <element signature="e#0#13461#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2705#2706#0" expanded="true" />
-            <element signature="e#2761#2762#0" expanded="true" />
-            <element signature="e#6981#6987#0" expanded="true" />
-            <element signature="e#10410#10416#0" expanded="true" />
-            <element signature="e#10805#10811#0" expanded="true" />
-            <element signature="e#11088#11094#0" expanded="true" />
-            <element signature="e#12541#12547#0" expanded="true" />
+            <element signature="e#6183#6184#0" expanded="true" />
+            <element signature="e#6222#6223#0" expanded="true" />
+            <element signature="e#7742#7748#0" expanded="true" />
+            <element signature="e#11171#11177#0" expanded="true" />
+            <element signature="e#11566#11572#0" expanded="true" />
+            <element signature="e#11849#11855#0" expanded="true" />
+            <element signature="e#13346#13352#0" expanded="true" />
           </folding>
         </state>
       </provider>

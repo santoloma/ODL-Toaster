@@ -13,6 +13,7 @@ import com.google.common.util.concurrent.*;
 import org.opendaylight.controller.md.sal.binding.api.*;
 import org.opendaylight.controller.md.sal.common.api.data.OptimisticLockFailedException;
 import org.opendaylight.controller.md.sal.common.api.data.TransactionCommitFailedException;
+import org.opendaylight.controller.md.sal.common.util.jmx.AbstractMXBean;
 import org.opendaylight.yang.gen.v1.http.netconfcentral.org.ns.toaster.rev091120.*;
 import org.opendaylight.yangtools.concepts.ListenerRegistration;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
@@ -34,7 +35,7 @@ import static org.opendaylight.controller.md.sal.common.api.data.LogicalDatastor
 import static org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType.OPERATIONAL;
 
 
-public class OpendaylightToaster implements ToasterService, DataTreeChangeListener<Toaster>, AutoCloseable {
+public class OpendaylightToaster extends AbstractMXBean implements ToasterService, DataTreeChangeListener<Toaster>, ToasterProviderRuntimeMXBean, AutoCloseable {
   
    private static final InstanceIdentifier<Toaster> TOASTER_IID = InstanceIdentifier.builder(Toaster.class).build();
    private static final DisplayString TOASTER_MANUFACTURER = new DisplayString("Opendaylight");
@@ -44,15 +45,17 @@ public class OpendaylightToaster implements ToasterService, DataTreeChangeListen
    private static final Logger LOG = LoggerFactory.getLogger(OpendaylightToaster.class);
    private final ExecutorService executor;
     //Thread safe holder for our darkness multiplier.
-    private AtomicLong darknessFactor = new AtomicLong( 1000 );
+   private AtomicLong darknessFactor = new AtomicLong( 1000 );
+   private final AtomicLong toastsMade = new AtomicLong(0);
 
-    // The following holds the Future for the current make toast task.
-    // This is used to cancel the current toast.
-    private final AtomicReference<Future<?>> currentMakeToastTask = new AtomicReference<>();
+   // The following holds the Future for the current make toast task.
+   // This is used to cancel the current toast.
+   private final AtomicReference<Future<?>> currentMakeToastTask = new AtomicReference<>();
 
-    private ListenerRegistration<OpendaylightToaster> dataTreeChangeListenerRegistration;
+   private ListenerRegistration<OpendaylightToaster> dataTreeChangeListenerRegistration;
   
    public OpendaylightToaster() {
+       super("OpendaylightToaster", "toaster-provider", null);
        executor = Executors.newFixedThreadPool(1);
    }
    
@@ -64,6 +67,9 @@ public class OpendaylightToaster implements ToasterService, DataTreeChangeListen
        dataTreeChangeListenerRegistration = dataBroker.registerDataTreeChangeListener(
                new DataTreeIdentifier<>(CONFIGURATION, TOASTER_IID), this);
        setToasterStatusUp(null);
+
+       // Register our MXBean.
+       register();
    }
  
    /**
@@ -71,6 +77,9 @@ public class OpendaylightToaster implements ToasterService, DataTreeChangeListen
     */
    @Override
    public void close() {
+       // Unregister our MXBean.
+       unregister();
+
        // When we close this service we need to shutdown our executor!
        executor.shutdown();
 
@@ -129,6 +138,25 @@ public class OpendaylightToaster implements ToasterService, DataTreeChangeListen
            }
        });
    }
+
+
+    /**
+     * JMX RPC call implemented from the ToasterProviderRuntimeMXBean interface.
+     */
+    @Override
+    public void clearToastsMade() {
+        LOG.info( "clearToastsMade" );
+        toastsMade.set(0);
+    }
+
+
+    /**
+     * Accessor method implemented from the ToasterProviderRuntimeMXBean interface.
+     */
+    @Override
+    public Long getToastsMade() {
+        return toastsMade.get();
+    }
 
 
     @Override
@@ -264,6 +292,9 @@ public class OpendaylightToaster implements ToasterService, DataTreeChangeListen
             } catch (InterruptedException e) {
                 LOG.info ("Interrupted while making the toast");
             }
+
+
+            toastsMade.incrementAndGet();
 
             // Set the Toaster status back to up - this essentially releases the toasting lock.
             // We can't clear the current toast task nor set the Future result until the
