@@ -107,6 +107,14 @@
       description
         "Top-level container for all toaster database objects.";
 
+       leaf darknessFactor {
+       type uint32;
+       config true;
+       default 1000;
+       description
+         "The darkness factor. Basically, the number of ms to multiple the doneness value by.";
+      }
+
       //Note in these three attributes that config = false. This indicates that they are operational attributes.
       leaf toasterManufacturer {
         type DisplayString;
