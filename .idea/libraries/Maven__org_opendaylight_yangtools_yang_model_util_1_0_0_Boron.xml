@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.yangtools:yang-model-util:1.0.0-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/yangtools/yang-model-util/1.0.0-Boron/yang-model-util-1.0.0-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/yangtools/yang-model-util/1.0.0-Boron/yang-model-util-1.0.0-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/yangtools/yang-model-util/1.0.0-Boron/yang-model-util-1.0.0-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

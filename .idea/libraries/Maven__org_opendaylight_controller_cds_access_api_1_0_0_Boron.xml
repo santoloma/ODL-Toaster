@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.controller:cds-access-api:1.0.0-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/cds-access-api/1.0.0-Boron/cds-access-api-1.0.0-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/cds-access-api/1.0.0-Boron/cds-access-api-1.0.0-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/cds-access-api/1.0.0-Boron/cds-access-api-1.0.0-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

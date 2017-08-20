@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.mdsal.model:opendaylight-l2-types:2013.08.27.9-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/opendaylight-l2-types/2013.08.27.9-Boron/opendaylight-l2-types-2013.08.27.9-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/opendaylight-l2-types/2013.08.27.9-Boron/opendaylight-l2-types-2013.08.27.9-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/opendaylight-l2-types/2013.08.27.9-Boron/opendaylight-l2-types-2013.08.27.9-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

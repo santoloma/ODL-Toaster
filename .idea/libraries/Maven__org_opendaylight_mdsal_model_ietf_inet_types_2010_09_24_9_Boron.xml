@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.mdsal.model:ietf-inet-types:2010.09.24.9-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/ietf-inet-types/2010.09.24.9-Boron/ietf-inet-types-2010.09.24.9-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/ietf-inet-types/2010.09.24.9-Boron/ietf-inet-types-2010.09.24.9-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/ietf-inet-types/2010.09.24.9-Boron/ietf-inet-types-2010.09.24.9-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

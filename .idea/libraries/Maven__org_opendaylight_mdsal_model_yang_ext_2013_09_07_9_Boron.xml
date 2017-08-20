@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.mdsal.model:yang-ext:2013.09.07.9-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/yang-ext/2013.09.07.9-Boron/yang-ext-2013.09.07.9-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/yang-ext/2013.09.07.9-Boron/yang-ext-2013.09.07.9-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/model/yang-ext/2013.09.07.9-Boron/yang-ext-2013.09.07.9-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

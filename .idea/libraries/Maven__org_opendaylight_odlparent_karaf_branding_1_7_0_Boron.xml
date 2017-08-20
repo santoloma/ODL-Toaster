@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.odlparent:karaf.branding:1.7.0-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/odlparent/karaf.branding/1.7.0-Boron/karaf.branding-1.7.0-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/odlparent/karaf.branding/1.7.0-Boron/karaf.branding-1.7.0-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/odlparent/karaf.branding/1.7.0-Boron/karaf.branding-1.7.0-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

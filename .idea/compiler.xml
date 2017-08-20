@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="toaster-api" />
+        <module name="toaster-cli" />
+        <module name="toaster-features" />
+        <module name="toaster-impl" />
+        <module name="toaster-it" />
+        <module name="toaster-karaf" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="toaster-aggregator" target="1.8" />
+      <module name="toaster-api" target="1.8" />
+      <module name="toaster-artifacts" target="1.5" />
+      <module name="toaster-cli" target="1.8" />
+      <module name="toaster-features" target="1.8" />
+      <module name="toaster-impl" target="1.8" />
+      <module name="toaster-it" target="1.8" />
+      <module name="toaster-karaf" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

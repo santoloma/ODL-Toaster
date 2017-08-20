@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/toaster-aggregator.iml" filepath="$PROJECT_DIR$/toaster-aggregator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api/toaster-api.iml" filepath="$PROJECT_DIR$/api/toaster-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/artifacts/toaster-artifacts.iml" filepath="$PROJECT_DIR$/artifacts/toaster-artifacts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cli/toaster-cli.iml" filepath="$PROJECT_DIR$/cli/toaster-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/features/toaster-features.iml" filepath="$PROJECT_DIR$/features/toaster-features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/impl/toaster-impl.iml" filepath="$PROJECT_DIR$/impl/toaster-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/it/toaster-it.iml" filepath="$PROJECT_DIR$/it/toaster-it.iml" />
+      <module fileurl="file://$PROJECT_DIR$/karaf/toaster-karaf.iml" filepath="$PROJECT_DIR$/karaf/toaster-karaf.iml" />
+    </modules>
+  </component>
+</project>

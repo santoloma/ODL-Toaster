@@ -1,0 +1,20 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" 
+           xmlns:odl="http://opendaylight.org/xmlns/blueprint/v1.0.0"
+           odl:use-default-for-reference-types="true">
+  <!-- 
+       "use-default-for-reference-types" is an ODL extension attribute that adds a filter to all services
+       imported via "reference" elements where the "type" property is either not set or set to "default" if
+       the odl:type attribute isn't explicitly specified. This ensures the default implementation is imported
+       if there are other implementations advertised with other types.
+  -->
+ 
+  <!-- Import MD-SAL services.  -->
+ 
+  <reference id="dataBroker" interface="org.opendaylight.controller.md.sal.binding.api.DataBroker" />
+ 
+  <!-- Create the OpendaylightToaster instance and inject its dependencies -->
+  <bean id="toaster" class="org.opendaylight.toaster.impl.OpendaylightToaster"
+          init-method="init" destroy-method="close">
+    <property name="dataBroker" ref="dataBroker"/>
+  </bean>
+</blueprint>

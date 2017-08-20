@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.mdsal:yang-binding:0.9.0-Boron">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/yang-binding/0.9.0-Boron/yang-binding-0.9.0-Boron.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/yang-binding/0.9.0-Boron/yang-binding-0.9.0-Boron-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/mdsal/yang-binding/0.9.0-Boron/yang-binding-0.9.0-Boron-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
