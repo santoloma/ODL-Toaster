@@ -2,7 +2,29 @@
 *.class
 
 # Log file
-*.log
+*.log.idea/
+target/
+*.class
+*.iml
+**/target
+**/bin
+dist
+**/logs
+products
+repository
+workspace
+*~
+target
+.classpath
+.project
+.settings
+.DS_Store
+MANIFEST.MF
+
+# Package Files #
+*.jar
+*.war
+*.ear
 
 # BlueJ files
 *.ctxt
