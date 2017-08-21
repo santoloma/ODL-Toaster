@@ -61,6 +61,38 @@
      }
    }  // rpc make-toast
 
+
+   rpc restock-toaster {
+       description
+         "Restocks the toaster with the amount of bread specified.";
+       
+  
+       input {
+           leaf amountOfBreadToStock {
+               type uint32;
+               description
+                 "Indicates the amount of bread to re-stock";
+           }
+       }
+   }
+   
+
+   notification toasterOutOfBread {
+     description
+       "Indicates that the toaster has run of out bread.";
+   }  // notification toasterOutOfStock
+   
+
+   notification toasterRestocked {
+     description
+       "Indicates that the toaster has run of out bread.";
+     leaf amountOfBread {
+       type uint32;
+       description
+         "Indicates the amount of bread that was re-stocked";
+     }
+   }  // notification toasterRestocked
+
    // action to cancel making toast - takes no input parameters
    rpc cancel-toast {
      description

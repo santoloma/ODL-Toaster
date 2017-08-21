@@ -22,11 +22,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class KitchenServiceImpl extends AbstractMXBean implements KitchenService, KitchenServiceRuntimeMXBean {
+public class KitchenServiceImpl extends AbstractMXBean implements KitchenService, KitchenServiceRuntimeMXBean, ToasterListener {
 
     private static final Logger LOG = LoggerFactory.getLogger( KitchenServiceImpl.class );
 
     private final ToasterService toaster;
+
+    private volatile boolean toasterOutOfBread;
 
     private final ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 
@@ -78,6 +80,14 @@ public class KitchenServiceImpl extends AbstractMXBean implements KitchenService
 
     private Future<RpcResult<Void>> makeToast( Class<? extends ToastType> toastType,
                                                int toastDoneness ) {
+
+        if (toasterOutOfBread) {
+            LOG.info("We're out of toast but we can make eggs");
+            return Futures.immediateFuture(RpcResultBuilder.<Void>success().withWarning(RpcError.ErrorType.APPLICATION,
+                    "partial-operation", "Toaster is out of bread but we can make you eggs").build());
+        }
+
+
         // Access the ToasterService to make the toast.
 
         MakeToastInput toastInput = new MakeToastInputBuilder().setToasterDoneness((long) toastDoneness)
@@ -104,6 +114,26 @@ public class KitchenServiceImpl extends AbstractMXBean implements KitchenService
         }
 
         return Boolean.FALSE;
+    }
+
+
+    /**
+     * Implemented from the ToasterListener interface.
+     */
+    @Override
+    public void onToasterOutOfBread( ToasterOutOfBread notification ) {
+        LOG.info( "ToasterOutOfBread notification" );
+        toasterOutOfBread = true;
+    }
+
+
+    /**
+     * Implemented from the ToasterListener interface.
+     */
+    @Override
+    public void onToasterRestocked( ToasterRestocked notification ) {
+        LOG.info( "ToasterRestocked notification - amountOfBread: " + notification.getAmountOfBread() );
+        toasterOutOfBread = false;
     }
 
 }

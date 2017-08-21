@@ -15,6 +15,7 @@ import org.opendaylight.controller.md.sal.common.api.data.OptimisticLockFailedEx
 import org.opendaylight.controller.md.sal.common.api.data.TransactionCommitFailedException;
 import org.opendaylight.controller.md.sal.common.util.jmx.AbstractMXBean;
 import org.opendaylight.yang.gen.v1.http.netconfcentral.org.ns.toaster.rev091120.*;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.toaster.app.config.rev160503.ToasterAppConfig;
 import org.opendaylight.yangtools.concepts.ListenerRegistration;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 import org.opendaylight.yangtools.yang.common.RpcError;
@@ -47,6 +48,9 @@ public class OpendaylightToaster extends AbstractMXBean implements ToasterServic
     //Thread safe holder for our darkness multiplier.
    private AtomicLong darknessFactor = new AtomicLong( 1000 );
    private final AtomicLong toastsMade = new AtomicLong(0);
+   private NotificationPublishService notificationProvider;
+   private final AtomicLong amountOfBreadInStock = new AtomicLong(100);
+   private final ToasterAppConfig toasterAppConfig;
 
    // The following holds the Future for the current make toast task.
    // This is used to cancel the current toast.
@@ -54,9 +58,10 @@ public class OpendaylightToaster extends AbstractMXBean implements ToasterServic
 
    private ListenerRegistration<OpendaylightToaster> dataTreeChangeListenerRegistration;
   
-   public OpendaylightToaster() {
+   public OpendaylightToaster(ToasterAppConfig toasterAppConfig) {
        super("OpendaylightToaster", "toaster-provider", null);
        executor = Executors.newFixedThreadPool(1);
+       this.toasterAppConfig = toasterAppConfig;
    }
    
    public void setDataBroker(final DataBroker dataBroker) {
@@ -103,14 +108,16 @@ public class OpendaylightToaster extends AbstractMXBean implements ToasterServic
            } );
        }
    }
-   
-   private Toaster buildToaster( Toaster.ToasterStatus status ) {
-       // note - we are simulating a device whose manufacture and model are
-       // fixed (embedded) into the hardware.
-       // This is why the manufacture and model number are hardcoded.
-       return new ToasterBuilder().setToasterManufacturer(TOASTER_MANUFACTURER).setToasterModelNumber(TOASTER_MODEL_NUMBER)
-               .setToasterStatus( status ).build();
-   }
+
+
+    public void setNotificationProvider(final NotificationPublishService notificationPublishService) {
+        this.notificationProvider = notificationPublishService;
+    }
+
+    private Toaster buildToaster(final Toaster.ToasterStatus status) {
+        return new ToasterBuilder().setToasterManufacturer(toasterAppConfig.getManufacturer())
+                .setToasterModelNumber(toasterAppConfig.getModelNumber()).setToasterStatus(status).build();
+    }
  
    private void setToasterStatusUp( final Function<Boolean,Void> resultCallback ) {
        WriteTransaction tx = dataBroker.newWriteOnlyTransaction();
@@ -178,6 +185,31 @@ public class OpendaylightToaster extends AbstractMXBean implements ToasterServic
                         change.getRootPath().getRootIdentifier(), rootNode.getDataBefore());
             }
         }
+    }
+
+
+    /**
+     * RestConf RPC call implemented from the ToasterService interface.
+     * Restocks the bread for the toaster, resets the toastsMade counter to 0, and sends a
+     * ToasterRestocked notification.
+     */
+    @Override
+    public Future<RpcResult<java.lang.Void>> restockToaster(final RestockToasterInput input) {
+        LOG.info("restockToaster: " + input);
+
+        amountOfBreadInStock.set(input.getAmountOfBreadToStock());
+
+        if (amountOfBreadInStock.get() > 0) {
+            ToasterRestocked reStockedNotification = new ToasterRestockedBuilder()
+                    .setAmountOfBread(input.getAmountOfBreadToStock()).build();
+            notificationProvider.offerNotification(reStockedNotification);
+        }
+
+        return Futures.immediateFuture(RpcResultBuilder.<Void>success().build());
+    }
+
+    private boolean outOfBread() {
+        return amountOfBreadInStock.get() == 0;
     }
 
 
@@ -284,6 +316,13 @@ public class OpendaylightToaster extends AbstractMXBean implements ToasterServic
             this.futureResult = futureResult;
         }
 
+
+
+
+        private boolean outOfBread() {
+            return amountOfBreadInStock.get() == 0;
+        }
+
         @Override
         public Void call() {
             try {
@@ -291,6 +330,13 @@ public class OpendaylightToaster extends AbstractMXBean implements ToasterServic
                 Thread.sleep(OpendaylightToaster.this.darknessFactor.get() * toastRequest.getToasterDoneness());
             } catch (InterruptedException e) {
                 LOG.info ("Interrupted while making the toast");
+            }
+
+            amountOfBreadInStock.getAndDecrement();
+            if(outOfBread()) {
+                LOG.info("Toaster is out of bread!");
+
+                notificationProvider.offerNotification(new ToasterOutOfBreadBuilder().build());
             }
 
 

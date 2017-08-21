@@ -9,14 +9,35 @@
   -->
  
   <!-- Import MD-SAL services.  -->
+
  
   <reference id="dataBroker" interface="org.opendaylight.controller.md.sal.binding.api.DataBroker" />
+  <reference id="notificationService" interface="org.opendaylight.controller.md.sal.binding.api.NotificationPublishService"/>
+
+  <!-- "clustered-app-config" is an ODL extension that obtains an application configuration yang container
+         from the MD-SAL data store and makes the binding DataObject available as a bean that can be injected
+         into other beans. Here we obtain the ToasterAppConfig container DataObject. This also shows how to
+         specify default data via the "default-config" child element. While default leaf values defined in the
+         yang are returned, one may have more complex data, eg lists, that require default data. The
+         "default-config" must contain the XML representation of the yang data, including namespace, wrapped
+         in a CDATA section to prevent the blueprint container from treating it as markup.
+    -->
+    <odl:clustered-app-config id="toasterAppConfig"
+        binding-class="org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.toaster.app.config.rev160503.ToasterAppConfig">
+       <odl:default-config><![CDATA[
+          <toaster-app-config xmlns="urn:opendaylight:params:xml:ns:yang:controller:toaster-app-config">
+             <max-make-toast-tries>3</max-make-toast-tries>
+          </toaster-app-config>
+       ]]></odl:default-config>
+    </odl:clustered-app-config>
  
   <!-- Create the OpendaylightToaster instance and inject its dependencies -->
-  <bean id="toaster" class="org.opendaylight.toaster.impl.OpendaylightToaster"
-          init-method="init" destroy-method="close">
-    <property name="dataBroker" ref="dataBroker"/>
-  </bean>
+   <bean id="toaster" class="org.opendaylight.toaster.impl.OpendaylightToaster"
+            init-method="init" destroy-method="close">
+      <argument ref="toasterAppConfig"/>
+      <property name="dataBroker" ref="dataBroker"/>
+      <property name="notificationProvider" ref="notificationService"/>
+    </bean>
 
      <!-- Register the OpendaylightToaster instance as an RPC implementation provider. The "rpc-implementation"
        element automatically figures out the RpcService interface although it can be explicitly specified.
